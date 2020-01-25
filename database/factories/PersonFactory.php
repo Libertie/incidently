@@ -10,6 +10,7 @@ $factory->define(App\Person::class, function (Faker $faker) {
         'nickname' => ucwords($faker->word()),
         'hair_color' => $faker->randomElement(Config::get('options.person.hair_color')),
         'hair_length' => $faker->randomElement(Config::get('options.person.hair_length')),
+        'hair_facial' => $faker->randomElement(Config::get('options.person.hair_facial')),
         'height' => $faker->randomElement(Config::get('options.person.height')),
         'skin' => $faker->randomElement(Config::get('options.person.skin')),
         'gender' => $faker->randomElement(Config::get('options.person.gender')),

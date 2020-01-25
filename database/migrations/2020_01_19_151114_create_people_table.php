@@ -19,6 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('nickname', 100);
             $table->string('hair_color', 100);
             $table->string('hair_length', 100);
+            $table->string('hair_facial', 100);
             $table->string('height', 100);
             $table->string('skin', 100);
             $table->string('gender', 100);

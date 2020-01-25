@@ -4,6 +4,7 @@ return [
     'person' => [
         'hair_color' => ['brown', 'blond', 'black', 'auburn', 'red', 'gray', 'unsure'],
         'hair_length' => ['very short', 'short', 'medium', 'long', 'very long', 'unsure'],
+        'hair_facial' => ['none', 'beard', 'goatee', 'mustache', 'unsure'],
         'height' => ['very short', 'short', 'average', 'tall', 'very tall', 'unsure'],
         'skin' => ['pale', 'fair', 'medium', 'olive', 'brown', 'black', 'unsure'],
         'gender' => ['amab', 'afab', 'unsure'],
