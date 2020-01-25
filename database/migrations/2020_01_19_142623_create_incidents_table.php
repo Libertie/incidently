@@ -19,7 +19,8 @@ class CreateIncidentsTable extends Migration
             $table->string('witnessed_by');
             $table->string('location');
             $table->text('description');
-            $table->boolean('leo');
+            $table->boolean('leo')
+                ->default(0);
             $table->timestamp('occurred_at');
             $table->timestamps();
         });
