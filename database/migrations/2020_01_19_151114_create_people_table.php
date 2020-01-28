@@ -15,8 +15,10 @@ class CreatePeopleTable extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 100);
-            $table->string('nickname', 100);
+            $table->string('name', 100)
+                ->nullable();
+            $table->string('nickname', 100)
+                ->nullable();
             $table->string('hair_color', 100);
             $table->string('hair_length', 100);
             $table->string('hair_facial', 100);

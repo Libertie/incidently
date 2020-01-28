@@ -9,7 +9,7 @@ $factory->define(App\Incident::class, function (Faker $faker) {
         'submitted_by' => ucwords($faker->name),
         'witnessed_by' => ucwords($faker->name),
         'location' => $faker->randomElement(explode(',', env('APP_LOCATIONS'))),
-        'description' => $faker->paragraph(),
+        'description' => $faker->paragraphs(rand(3, 5), true),
         'leo' => $faker->boolean,
         'occurred_at' => $faker->dateTimeBetween('-1 months', 'now')
     ];
