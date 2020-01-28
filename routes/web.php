@@ -14,3 +14,28 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::group(['middleware' => 'auth'], function() {
+    Route::get('/incidents', 'IncidentController@index')
+        ->name('incidents.index');
+    Route::get('/incidents/create', 'IncidentController@create')
+        ->name('incidents.create');
+    Route::get('/incidents/{incident}', 'IncidentController@show')
+        ->name('incidents.show');
+    Route::get('/incidents/{incident}/edit', 'IncidentController@edit')
+        ->name('incidents.edit');
+    Route::get('incidents/{incident}/delete', 'IncidentController@destroy')
+        ->name('incidents.destroy');
+
+    Route::post('/incidents', 'IncidentController@store')
+        ->name('incidents.store');
+    //Route::post('/incidents/{project}/types', 'ProjectTypeController@store');
+
+    Route::patch('/incidents/{incident}', 'IncidentController@update')
+        ->name('incidents.update');
+    //Route::patch('/incidents/{project}/types/{type}', 'ProjectTypeController@update');
+
+    //Route::get('/home', 'HomeController@index')->name('home');
+//});
+
+//Auth::routes();
