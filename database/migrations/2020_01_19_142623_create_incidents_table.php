@@ -16,7 +16,8 @@ class CreateIncidentsTable extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('submitted_by');
-            $table->string('witnessed_by');
+            $table->string('witnessed_by')
+                ->nullable();
             $table->string('location');
             $table->text('description');
             $table->boolean('leo')
