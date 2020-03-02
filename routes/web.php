@@ -29,7 +29,7 @@ Route::get('/', function () {
 
     Route::post('/incidents', 'IncidentController@store')
         ->name('incidents.store');
-    //Route::post('/incidents/{project}/types', 'ProjectTypeController@store');
+    Route::post('/incidents/{incident}/photos', 'PhotoController@store');
 
     Route::patch('/incidents/{incident}', 'IncidentController@update')
         ->name('incidents.update');

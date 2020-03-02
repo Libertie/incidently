@@ -43141,8 +43141,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 __webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
 
-reuire('select2-bootstrap4-theme');
-
 /***/ }),
 
 /***/ "./resources/sass/app.scss":

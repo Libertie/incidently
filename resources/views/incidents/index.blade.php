@@ -23,10 +23,10 @@
                 <td>{{ Carbon\Carbon::parse($incident->occurred_at)->format('M d, Y') }}</td>
                 <td>{{ $incident->submitted_by }}</td>
                 <td>{{ $incident->types->pluck('name')->implode(', ') }}</td>
-                <td><a href="{{ route('incidents.show', ['incident' => $incident->id]) }}">View</a></td>
+                <td><a href="{{ $incident->path() }}">View</a></td>
             </tr>
             @empty
-            <tr><td>No incidents yet</td></tr>
+            <tr><td colspan="5">No incidents yet</td></tr>
             @endforelse
         </tbody>
     </table>
