@@ -24,18 +24,23 @@ class StoreIncident extends FormRequest
     public function rules()
     {
         return [
-            'submitted_by' => 'required|max:255',
+            'submitted_by' => 'sometimes|required|max:255',
             'witnessed_by' => 'max:255',
-            'location' => 'required|max:255',
-            'description' => 'required',
-            'occurred_at' => 'required|date'
+            'location' => 'sometimes|required|max:255',
+            'description' => 'sometimes|required',
+            'leo' => 'boolean',
+            'occurred_at' => 'sometimes|required_without_all:date,time|date',
+            'people' => 'required|exists:people,id',
+            'types' => 'required|exists:types,id'
         ];
     }
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'occurred_at' => date('Y-m-d H:i:s', strtotime($this->date.' '.$this->time)),
-        ]);
+        if (isset($this->date, $this->time)) {
+            $this->merge([
+                'occurred_at' => date('Y-m-d H:i:s', strtotime($this->date . ' ' . $this->time)),
+            ]);
+        }
     }
 }

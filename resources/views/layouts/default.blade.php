@@ -15,7 +15,11 @@
         @include('elements.main-header')
 
         <!-- Content -->
-        <div class="container mt-5">
+        <div class="container mt-5 position-relative">
+
+            <!-- Notifications -->
+            @include('elements.notification')
+
             <div class="row">
                 <div class="col-lg-12">
                     @yield('content')

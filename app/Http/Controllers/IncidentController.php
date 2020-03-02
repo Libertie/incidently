@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Incident;
 use App\Http\Requests\StoreIncident;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IncidentController extends Controller
 {
@@ -27,13 +25,17 @@ class IncidentController extends Controller
 
     public function store(StoreIncident $request)
     {
-        $validated = $request->validated();
-        $incident = (new Incident($validated));
-        $incident->save();
+        $incident = new Incident();
+
+        $validated = collect($request->validated())
+            ->only($incident->getFillable())
+            ->toArray();
+        $incident->fill($validated)->save();
         $incident->people()->attach($request->people);
         $incident->types()->attach($request->types);
 
-        return redirect(route('incidents.index'));
+        return redirect(route('incidents.index'))
+            ->with('message', 'New report saved.');
     }
 
     public function show(Incident $incident)
@@ -49,15 +51,18 @@ class IncidentController extends Controller
         return view('incidents.edit', compact(['incident', 'people', 'types']));
     }
 
-    public function update(StoreIncident $request, $id)
+    public function update(StoreIncident $request, Incident $incident)
     {
-        $validated = $request->validated();
-        $incident = Incident::findOrFail($id);
+        $validated = collect($request->validated())
+            ->only((new Incident())->getFillable())
+            ->toArray();
+
         $incident->people()->sync($request->people);
         $incident->types()->sync($request->types);
         $incident->update($validated);
 
-        return redirect(route('incidents.show', [$incident->id]));
+        return redirect(route('incidents.show', [$incident->id]))
+            ->with('message', 'Report #' . sprintf('%05d', $incident->id) . ' updated.');
     }
 
     public function destroy(Incident $incident)
