@@ -22,14 +22,24 @@
                 </div>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-body">
-                <p class="card-title"><strong>Date</strong></p>
-                <p>{{ Carbon\Carbon::parse($incident->occurred_at)->format('M d, Y') }}</p>
-                <p class="card-title"><strong>Time</strong></p>
-                <p>{{ Carbon\Carbon::parse($incident->occurred_at)->format('g:ma') }}</p>
-                <p class="card-title"><strong>Location</strong></p>
-                <p>{{ $incident->location }}</p>
+            @if ($incident->photos->count())
+                @include('elements.photo-carousel')
+            @endif
+            <div class="card-body {{ $incident->photos->count() ? 'row' : '' }}">
+                <div class="col">
+                    <p class="card-title"><strong>Date</strong></p>
+                    <p>{{ Carbon\Carbon::parse($incident->occurred_at)->format('M d, Y') }}</p>
+                </div>
+                <div class="col">
+                    <p class="card-title"><strong>Time</strong></p>
+                    <p>{{ Carbon\Carbon::parse($incident->occurred_at)->format('g:ma') }}</p>
+                </div>
+                <div class="col">
+                    <p class="card-title"><strong>Location</strong></p>
+                    <p>{{ $incident->location }}</p>
+                </div>
             </div>
         </div>
     </div>

@@ -17,18 +17,46 @@
         @endif
     </p>
 
-    {{ Form::model($incident, [
-        'route' => ['incidents.update', $incident->id],
-        'method' => 'patch'
-    ]) }}
+    <div class="row">
 
-        @include('forms.incident')
-
-        {{ Form::submit('Update', [
-            'class' => 'btn btn-primary'
+        {{ Form::model($incident, [
+            'route' => ['incidents.update', $incident->id],
+            'method' => 'patch',
+            'class' => 'col-12 col-lg-6 mb-3'
         ]) }}
-        <a href="{{ route('incidents.destroy', ['incident' => $incident->id]) }}" class="btn btn-danger">Delete</a>
 
-    {{ Form::close() }}
+            @include('forms.incident')
+
+            {{ Form::submit('Update', [
+                'class' => 'btn btn-primary'
+            ]) }}
+            <a href="{{ route('incidents.destroy', ['incident' => $incident->id]) }}" class="btn btn-danger">
+                Delete
+            </a>
+
+        {{ Form::close() }}
+
+        <div class="jumbotron col-12 col-lg-6 py-3 px-3">
+            <h2 class="mb-3">Manage Photos</h2>
+
+            @include('forms.photo-grid')
+
+            <h3>Add a Photo</h3>
+
+            {{ Form::model($incident, [
+                'files' => true,
+                'route' => ['photos.store', $incident->id]
+            ]) }}
+
+                @include('forms.photo')
+
+                {{ Form::submit('Submit', [
+                    'class' => 'btn btn-secondary'
+                ]) }}
+
+            {{ Form::close() }}
+        </div>
+
+    </div>
 
 @endsection

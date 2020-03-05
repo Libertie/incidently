@@ -41,7 +41,7 @@ class Incident extends Model
 
     public function addPhoto($file, $caption)
     {
-        $file = $file->store('uploads');
+        $file = $file->store('public');
         return $this->photos()->create(compact(['file', 'caption']));
     }
 }

@@ -26,10 +26,13 @@ Route::get('/', function () {
         ->name('incidents.edit');
     Route::get('incidents/{incident}/delete', 'IncidentController@destroy')
         ->name('incidents.destroy');
+    Route::delete('/incidents/{incident}/photos/{photo}/delete', 'PhotoController@destroy')
+        ->name('photos.destroy');
 
     Route::post('/incidents', 'IncidentController@store')
         ->name('incidents.store');
-    Route::post('/incidents/{incident}/photos', 'PhotoController@store');
+    Route::post('/incidents/{incident}/photos', 'PhotoController@store')
+        ->name('photos.store');
 
     Route::patch('/incidents/{incident}', 'IncidentController@update')
         ->name('incidents.update');

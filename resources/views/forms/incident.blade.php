@@ -92,7 +92,6 @@ $location_array = array_combine($locations, $locations);
     ]) }}
 </div>
 
-
 <!-- Witness name input -->
 <div class="form-group">
     {{ Form::label('witnessed_by', 'Witnesses') }}

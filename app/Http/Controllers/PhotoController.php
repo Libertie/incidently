@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Incident;
 use App\Photo;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -47,10 +47,13 @@ class PhotoController extends Controller
     {
         //
     }
-
-    public function destroy(Photo $photo)
-    {
-        //
-    }
     */
+
+    public function destroy(Incident $incident, Photo $photo)
+    {
+        Storage::delete($photo->file);
+        $photo->delete();
+
+        return redirect($incident->path());
+    }
 }

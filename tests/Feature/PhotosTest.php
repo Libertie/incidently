@@ -26,13 +26,36 @@ class PhotosTest extends TestCase
             'file' => $file
         ]);
 
-        $response = $this->post($incident->path() . '/photos', $photo);
+        $this->post($incident->path() . '/photos', $photo);
 
-        Storage::disk('local')->assertExists('uploads/' . $file->hashName());
+        Storage::disk('local')->assertExists('public/' . $file->hashName());
 
-        /*
         $this->get($incident->path())
             ->assertSee($photo['caption']);
-            */
+    }
+
+    /** @test */
+    public function an_incident_photo_can_be_deleted()
+    {
+        $this->withoutExceptionHandling();
+
+        Storage::fake('local');
+
+        $photo = factory(Photo::class)->create([
+            'file' => Storage::putFile('public', UploadedFile::fake()->image('photo.jpg'))
+        ]);
+
+        $this->assertDatabaseHas('photos', [
+            'caption' => $photo->caption
+        ]);
+        Storage::disk('local')->assertExists($photo->file);
+
+        $this->delete($photo->path() . '/delete')
+            ->assertDontSee($photo->caption);
+        $this->assertDatabaseMissing('photos', [
+            'caption' => $photo->caption
+
+        ]);    
+        Storage::disk('local')->assertMissing($photo->file);
     }
 }
