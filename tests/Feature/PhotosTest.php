@@ -45,17 +45,12 @@ class PhotosTest extends TestCase
             'file' => Storage::putFile('public', UploadedFile::fake()->image('photo.jpg'))
         ]);
 
-        $this->assertDatabaseHas('photos', [
-            'caption' => $photo->caption
-        ]);
+        $this->assertDatabaseHas('photos', $photo->only(['id']));
         Storage::disk('local')->assertExists($photo->file);
 
         $this->delete($photo->path() . '/delete')
             ->assertDontSee($photo->caption);
-        $this->assertDatabaseMissing('photos', [
-            'caption' => $photo->caption
-
-        ]);    
+        $this->assertDatabaseMissing('photos', $photo->only(['id']));    
         Storage::disk('local')->assertMissing($photo->file);
     }
 }
