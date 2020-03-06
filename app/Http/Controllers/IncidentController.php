@@ -69,6 +69,7 @@ class IncidentController extends Controller
     {
         $incident->delete();
 
-        return redirect(route('incidents.index'));
+        return redirect(route('incidents.index'))
+            ->with('message', 'Report #' . sprintf('%05d', $incident->id) . ' deleted.');
     }
 }

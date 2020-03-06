@@ -24,7 +24,7 @@ Route::get('/', function () {
         ->name('incidents.show');
     Route::get('/incidents/{incident}/edit', 'IncidentController@edit')
         ->name('incidents.edit');
-    Route::get('incidents/{incident}/delete', 'IncidentController@destroy')
+    Route::delete('incidents/{incident}/delete', 'IncidentController@destroy')
         ->name('incidents.destroy');
     Route::delete('/incidents/{incident}/photos/{photo}/delete', 'PhotoController@destroy')
         ->name('photos.destroy');

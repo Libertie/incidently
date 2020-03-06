@@ -30,8 +30,11 @@
             {{ Form::submit('Update', [
                 'class' => 'btn btn-primary'
             ]) }}
-            <a href="{{ route('incidents.destroy', ['incident' => $incident->id]) }}" class="btn btn-danger">
-                Delete
+            <a
+                href="{{ route('incidents.destroy', ['incident' => $incident->id]) }}"
+                class="btn btn-danger"
+                data-method="delete"
+                data-confirm="Are you sure?">Delete
             </a>
 
         {{ Form::close() }}
