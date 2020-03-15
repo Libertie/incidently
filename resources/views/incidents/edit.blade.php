@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Incident Report</h1>
+    <h1>Incident Report #{{ sprintf('%05d', $incident->id) }}</h1>
 
     @if ($errors->any())
     <div class="alert alert-danger" role="alert" aria-live="assertive">
