@@ -36,6 +36,10 @@ Route::get('/', function () {
 
     Route::patch('/incidents/{incident}', 'IncidentController@update')
         ->name('incidents.update');
+
+    Route::get('/people/{person}', 'PersonController@show')
+        ->name('people.show');
+
     //Route::patch('/incidents/{project}/types/{type}', 'ProjectTypeController@update');
 
     //Route::get('/home', 'HomeController@index')->name('home');

@@ -10,4 +10,9 @@ class Person extends Model
     {
         return $this->belongsToMany('App\Incident');
     }
+
+    public function path()
+    {
+        return '/people/' . $this->id;   
+    }
 }

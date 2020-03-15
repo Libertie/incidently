@@ -52,7 +52,7 @@
                 <p class="card-title"><strong>Individuals involved</strong></p>
                 <ul>
                     @foreach ($incident->people as $person)
-                    <li>{{ $person->name }}</li>
+                    <li><a href="{{ $person->path() }}">{{ $person->name }}</a></li>
                     @endforeach
                     @if ($incident->leo)
                     <li class="text-danger">Law enforcement</li>
@@ -66,6 +66,6 @@
         </div>
     </div>
 
-    <a href="{{ route('incidents.edit', ['incident' => $incident->id]) }}" class="btn btn-primary mt-3">Edit Report</a>
+    <a href="{{ route('incidents.edit', ['incident' => $incident->id]) }}" class="btn mt-3">Edit Report</a>
 
 @endsection
